@@ -50,7 +50,13 @@ app.get('/', function(req, res) {
 	res.send('Welcome to the IBS API!');
 });
 
-// routes for CRUD operations on the reports
+// route for getting all reports
+app.route('/reports').get(function(req, res) {
+	// get all reports from the database and send as JSON
+	res.send('getting all reports from the database..');
+});
+
+// routes for CRUD operations on a single report specified by :id
 app.route('/reports/:id')
 	
 	// GET
