@@ -35,4 +35,8 @@ app.use(function(req, res, next) {
   		'Access-Control-Allow-Methods': 'GET, POST',
   		'Access-Control.Allow-Headers': 'X-Requested-With, content-type, Authorization'
 	});
+	next();
 });
+
+// log request information to the console for development using 'morgan'
+app.use(morgan('dev'));
