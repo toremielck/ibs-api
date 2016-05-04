@@ -40,3 +40,6 @@ app.use(function(req, res, next) {
 
 // log request information to the console for development using 'morgan'
 app.use(morgan('dev'));
+
+// listening on specified port
+app.listen(port);
