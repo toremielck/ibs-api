@@ -52,6 +52,7 @@ app.get('/', function(req, res) {
 
 // route for getting all reports
 app.route('/reports').get(function(req, res) {
+	// TODO
 	// get all reports from the database and send as JSON
 	res.send('getting all reports from the database..');
 });
@@ -59,7 +60,6 @@ app.route('/reports').get(function(req, res) {
 // routes for CRUD operations on a single report specified by :id
 app.route('/reports/:id')
 	
-	// GET
 	// retrieves the report with the specified id from the database
 	.get(function(req, res) {
 		// TODO
