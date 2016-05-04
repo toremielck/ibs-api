@@ -1,0 +1,20 @@
+{
+  "name": "ibs-api",
+  "version": "1.0.0",
+  "description": "API for the FLatCheck tool.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toremielck/ibs-api.git"
+  },
+  "author": "Tore Mielck <tore.mielck@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toremielck/ibs-api/issues"
+  },
+  "homepage": "https://github.com/toremielck/ibs-api#readme"
+}
