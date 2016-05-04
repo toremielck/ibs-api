@@ -41,5 +41,28 @@ app.use(function(req, res, next) {
 // log request information to the console for development using 'morgan'
 app.use(morgan('dev'));
 
+
+// API ROUTES
+// ==================================================
+
+// basic route for the homepage
+app.get('/', function(req, res) {
+	res.send('Welcome to the IBS API!');
+});
+
+// routes for CRUD operations on the reports
+app.route('/reports/:id')
+	
+	// GET
+	// retrieves the report with the specified id from the database
+	.get(function(req, res) {
+		// TODO
+		// getting a report from the database using the given :id parameter
+		res.send('getting report with id ' + req.params.id + ' from the database..');
+	})
+
+// STARTING THE SERVER
+// ==================================================
+
 // listening on specified port
 app.listen(port);
