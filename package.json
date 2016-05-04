@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/toremielck/ibs-api/issues"
   },
-  "homepage": "https://github.com/toremielck/ibs-api#readme"
+  "homepage": "https://github.com/toremielck/ibs-api#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.14",
+    "morgan": "^1.7.0"
+  }
 }
