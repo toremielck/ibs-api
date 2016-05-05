@@ -21,13 +21,6 @@ var ReportSchema = new Schema({
 			foto: 							String,
 			erforderliche_massnahme: 		String,
 			erledigt: 						Boolean
-		}],
-		eingangsbeleuchtung: 	[{
-			pruefung_sauberkeit_ordnung: 	Boolean,
-			massnahme_noetig: 				Boolean,
-			foto: 							String,
-			erforderliche_massnahme: 		String,
-			erledigt: 						Boolean
 		}]
 	}]
 }); 
