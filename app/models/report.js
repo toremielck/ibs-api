@@ -6,21 +6,8 @@ var Schema		 = mongoose.Schema;
 var ReportSchema = new Schema({
 	name: 					String,
 	pruefer: 				String,
-	datum: 					{ type: Date, default: Date.now },
-	hauseingangsbereich: 	[{
-		briefkastenanlage: 		[{
-			pruefung_sauberkeit_ordnung: 	Boolean,
-			massnahme_noetig: 				Boolean,
-			foto: 							String,
-			erforderliche_massnahme: 		String,
-			erledigt: 						Boolean
-		}],
-		haustuer: 				[{
-			pruefung_sauberkeit_ordnung: 	Boolean,
-			massnahme_noetig: 				Boolean,
-			foto: 							String,
-			erforderliche_massnahme: 		String,
-			erledigt: 						Boolean
-		}]
-	}]
+	datum: 					{ type: Date, default: Date.now }
 }); 
+
+// export schema
+module.exports = mongoose.model('Report', ReportSchema);

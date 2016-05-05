@@ -57,15 +57,36 @@ app.route('/reports').get(function(req, res) {
 	res.send('getting all reports from the database..');
 });
 
-// routes for CRUD operations on a single report specified by :id
-app.route('/reports/:id')
-	
-	// retrieves the report with the specified id from the database
-	.get(function(req, res) {
-		// TODO
-		// getting a report from the database using the given :id parameter
-		res.send('getting report with id ' + req.params.id + ' from the database..');
-	})
+// route for adding a new report to the database via POST
+app.route('/reports').post(function(req, res) {
+	// create a new instance of the report model
+	var report = new Report();
+
+	// set the reports information (comes from the request)
+	report.name = req.body.name;
+	report.pruefer = req.body.pruefer;
+
+	// save the record and check for errors
+	report.save(function(err) {
+		// check for duplicate entry
+		if(err) {
+			if(err.code == 11000) {
+				return res.json({ success: false, message: "duplicate entry" });
+			} else {
+				return res.send(err);
+			}
+		}
+		// respond with success
+		res.send('report successfully saved to database');
+	});
+});
+
+// retrieve report specified by :id from the database
+app.route('/reports/:id').get(function(req, res) {
+	// TODO
+	// getting a report from the database using the given :id parameter
+	res.send('getting report with id ' + req.params.id + ' from the database..');
+});
 
 // STARTING THE SERVER
 // ==================================================
