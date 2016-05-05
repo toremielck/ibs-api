@@ -4,9 +4,10 @@ var Schema		 = mongoose.Schema;
 
 // report schema
 var ReportSchema = new Schema({
-	name: 					String,
-	pruefer: 				String,
-	datum: 					{ type: Date, default: Date.now }
+	name: 		String,
+	pruefer: 	String,
+	datum: 		{ type: Date, default: Date.now },
+	text: 		String
 }); 
 
 // export schema

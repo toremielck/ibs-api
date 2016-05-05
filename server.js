@@ -52,9 +52,13 @@ app.get('/', function(req, res) {
 
 // route for getting all reports
 app.route('/reports').get(function(req, res) {
-	// TODO
-	// get all reports from the database and send as JSON
-	res.send('getting all reports from the database..');
+	Report.find(function(err, reports) {
+		if(err) {
+			res.send(err);
+		}
+		// respond with all reports in JSON format
+		res.json(reports);
+	});
 });
 
 // route for adding a new report to the database via POST
@@ -63,8 +67,9 @@ app.route('/reports').post(function(req, res) {
 	var report = new Report();
 
 	// set the reports information (comes from the request)
-	report.name = req.body.name;
-	report.pruefer = req.body.pruefer;
+	report.name 	= req.body.name;
+	report.pruefer 	= req.body.pruefer;
+	report.text 	= req.body.text;
 
 	// save the record and check for errors
 	report.save(function(err) {
