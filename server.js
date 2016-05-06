@@ -61,7 +61,7 @@ app.route('/reports').get(function(req, res) {
 	});
 });
 
-// route for adding a new report to the database via POST
+// POST add new report to the database
 app.route('/reports').post(function(req, res) {
 	// create a new instance of the report model
 	var report = new Report();
@@ -108,6 +108,7 @@ app.route('/reports/:report_id')
 			if(req.body.pruefer) report.pruefer = req.body.pruefer;
 			if(req.body.text) report.text 		= req.body.text;
 
+			// save the record and check for errors
 			report.save(function(err) {
 				if(err) res.send(err);
 
@@ -116,6 +117,7 @@ app.route('/reports/:report_id')
 		});
 	})
 
+	// DELETE delete report
 	.delete(function(req, res) {
 		Report.remove({ _id: req.params.report_id }, function(err, report) {
 			if(err) res.send(err);
