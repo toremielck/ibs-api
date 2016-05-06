@@ -32,7 +32,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
 	res.set({
   		'Access-Control-Allow-Origin': '*',
-  		'Access-Control-Allow-Methods': 'GET, POST',
+  		'Access-Control-Allow-Methods': 'GET, POST, PUT',
   		'Access-Control.Allow-Headers': 'X-Requested-With, content-type, Authorization'
 	});
 	next();
@@ -81,23 +81,49 @@ app.route('/reports').post(function(req, res) {
 				return res.send(err);
 			}
 		}
-		// respond with success
+
 		res.send('report successfully saved to database');
 	});
 });
 
-// get the report with that id
-// (http://host:port/reports/:report_id)
-app.route('/reports/:report_id').get(function(req, res) {
-	Report.findById(req.params.report_id, function(err, report) {
-		if(err) {
-			res.send(err);
-		}
+// CRUD operations for http://host/reports/:report_id
+app.route('/reports/:report_id')
 
-		// return that report
-		res.json(report);
-	});
-});
+	// GET report by id
+	.get(function(req, res) {
+		Report.findById(req.params.report_id, function(err, report) {
+			if(err) res.send(err);
+
+			res.json(report); 
+		});
+	})
+
+	// PUT update report
+	.put(function(req, res) {
+		Report.findById(req.params.report_id, function(err, report) {
+			if(err) res.send(err);
+
+			// update the reports information only if it's new
+			if(req.body.name) report.name 		= req.body.name;
+			if(req.body.pruefer) report.pruefer = req.body.pruefer;
+			if(req.body.text) report.text 		= req.body.text;
+
+			report.save(function(err) {
+				if(err) res.send(err);
+
+				res.send('report ' + req.params.report_id + ' successfully updated');
+			});
+		});
+	})
+
+	.delete(function(req, res) {
+		Report.remove({ _id: req.params.report_id }, function(err, report) {
+			if(err) res.send(err);
+
+			res.send('report ' + req.params.report_id + ' deleted');
+		});
+	})
+
 
 // STARTING THE SERVER
 // ==================================================
