@@ -2,55 +2,29 @@
 // ==================================================
 
 // DEPENDENCIES
-var express		= require('express');
-var bodyParser	= require('body-parser');
-var morgan		= require('morgan');
-var mongoose	= require('mongoose');
+var express		 = require('express');
+var bodyParser	 = require('body-parser');
+var morgan		 = require('morgan');
+var mongoose	 = require('mongoose');
 
 // create a new express application
-var app 		= express();
+var app 		 = express();
 
 // load models for the database
-var Report 		= require('./app/models/report');
+var Report 		 = require('./app/models/report');
 
 // specify the port for the server 
 // if no port is specified by the process the port 8080 is taken as default
-var port 		= process.env.PORT || 8080 
+var port 		 = process.env.PORT || 8080 
 
 // connect to local mongoDB database
 mongoose.connect('mongodb://localhost:27017/ibs-api');
 
 
-// APP CONFIGURATION
+// ROUTES
 // ==================================================
 
-// use body-parser to grab information from post requests
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// configure the app to handle CORS requests
-app.use(function(req, res, next) {
-	res.set({
-  		'Access-Control-Allow-Origin': '*',
-  		'Access-Control-Allow-Methods': 'GET, POST, PUT',
-  		'Access-Control.Allow-Headers': 'X-Requested-With, content-type, Authorization'
-	});
-	next();
-});
-
-// log request information to the console for development using 'morgan'
-app.use(morgan('dev'));
-
-
-// API ROUTES
-// ==================================================
-
-// basic route for the homepage
-app.get('/', function(req, res) {
-	res.send('Welcome to the IBS API!');
-});
-
-// route for getting all reports
+// get all reports
 app.route('/reports').get(function(req, res) {
 	Report.find(function(err, reports) {
 		if(err) {
@@ -125,6 +99,32 @@ app.route('/reports/:report_id')
 			res.send('report ' + req.params.report_id + ' deleted');
 		});
 	})
+
+// basic route for the homepage
+app.get('/', function(req, res) {
+	res.send('Welcome to the IBS API!');
+});
+
+
+// APP CONFIGURATION
+// ==================================================
+
+// use body-parser to grab information from post requests
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// configure the app to handle CORS requests
+app.use(function(req, res, next) {
+	res.set({
+  		'Access-Control-Allow-Origin': '*',
+  		'Access-Control-Allow-Methods': 'GET, POST, PUT',
+  		'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+	});
+	next();
+});
+
+// log request information to the console for development using 'morgan'
+app.use(morgan('dev'));
 
 
 // STARTING THE SERVER
