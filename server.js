@@ -24,7 +24,7 @@ mongoose.connect('mongodb://localhost:27017/ibs-api');
 // APP CONFIGURATION
 // ==================================================
 
-// body-parser used to grab information from post requests
+// use body-parser to grab information from post requests
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -86,11 +86,17 @@ app.route('/reports').post(function(req, res) {
 	});
 });
 
-// retrieve report specified by :id from the database
-app.route('/reports/:id').get(function(req, res) {
-	// TODO
-	// getting a report from the database using the given :id parameter
-	res.send('getting report with id ' + req.params.id + ' from the database..');
+// get the report with that id
+// (http://host:port/reports/:report_id)
+app.route('/reports/:report_id').get(function(req, res) {
+	Report.findById(req.params.report_id, function(err, report) {
+		if(err) {
+			res.send(err);
+		}
+
+		// return that report
+		res.json(report);
+	});
 });
 
 // STARTING THE SERVER
