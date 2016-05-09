@@ -76,7 +76,7 @@ app.route('/reports').post(function(req, res) {
 				return res.send(err);
 			}
 		}
-
+		// respond with report in JSON format
 		res.send('report successfully saved to database');
 	});
 });
