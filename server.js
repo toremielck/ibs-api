@@ -20,6 +20,27 @@ var port 		 = process.env.PORT || 8080
 // connect to local mongoDB database
 mongoose.connect('mongodb://localhost:27017/ibs-api');
 
+// APP CONFIGURATION
+// ==================================================
+
+// use body-parser to grab information from post requests
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// configure the app to handle CORS requests
+app.use(function(req, res, next) {
+	res.set({
+  		'Access-Control-Allow-Origin': 		'*',
+  		'Access-Control-Allow-Methods': 	'GET, POST',
+  		'Access-Control-Allow-Headers': 	'content-type',
+  		'Access-Control-Request-Headers': 	'X-Requested-With, content-type, Authorization'
+	});
+	next();
+});
+
+// log request information to the console for development using 'morgan'
+app.use(morgan('dev'));
+
 
 // ROUTES
 // ==================================================
@@ -72,7 +93,7 @@ app.route('/reports/:report_id')
 		});
 	})
 
-	// PUT update report
+	// PATCH update report
 	.put(function(req, res) {
 		Report.findById(req.params.report_id, function(err, report) {
 			if(err) res.send(err);
@@ -104,27 +125,6 @@ app.route('/reports/:report_id')
 app.get('/', function(req, res) {
 	res.send('Welcome to the IBS API!');
 });
-
-
-// APP CONFIGURATION
-// ==================================================
-
-// use body-parser to grab information from post requests
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-// configure the app to handle CORS requests
-app.use(function(req, res, next) {
-	res.set({
-  		'Access-Control-Allow-Origin': '*',
-  		'Access-Control-Allow-Methods': 'GET, POST, PUT',
-  		'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
-	});
-	next();
-});
-
-// log request information to the console for development using 'morgan'
-app.use(morgan('dev'));
 
 
 // STARTING THE SERVER

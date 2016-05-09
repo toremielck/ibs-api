@@ -7,6 +7,7 @@ var ReportSchema = new Schema({
 	name: 		String,
 	pruefer: 	String,
 	datum: 		{ type: Date, default: Date.now },
+	adresse: 	String,
 	text: 		String
 }); 
 
