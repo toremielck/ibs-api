@@ -135,6 +135,11 @@ app.get('/js/app.js', function(req, res) {
 	res.sendFile(__dirname + '/public/js/app.js');
 });
 
+// get stylesheet
+app.get('/css/style.css', function(req, res) {
+	res.sendFile(__dirname + '/public/css/style.css');
+});
+
 
 // STARTING THE SERVER
 // ==================================================
