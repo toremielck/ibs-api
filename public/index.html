@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>First Angular App!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+		<script src="js/app.js"></script> 
+	</head>
+	<body ng-app="myApp" ng-controller="mainController">
+
+		<form novalidate class="simple-form">
+			Name: <input type="text" ng-model="report.name" /><br />
+			Prüfer: <input type="text" ng-model="report.pruefer" /><br />
+			Datum: <input type="date" ng-model="report.date" /><br />
+			Adresse: <input type="text" ng-model="report.adresse" /><br />
+			Text: <input type="text" ng-model="report.text" /><br />
+			<input type="submit" ng-click="save()" value="Save" />
+		</form>
+		<pre>{{ message }}</pre>
+	</body>
+</html>

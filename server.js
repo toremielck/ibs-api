@@ -64,6 +64,8 @@ app.route('/reports').post(function(req, res) {
 	// set the reports information (comes from the request)
 	report.name 	= req.body.name;
 	report.pruefer 	= req.body.pruefer;
+	report.datum	= req.body.datum;
+	report.adresse	= req.body.adresse;
 	report.text 	= req.body.text;
 
 	// save the record and check for errors
@@ -101,6 +103,8 @@ app.route('/reports/:report_id')
 			// update the reports information only if it's new
 			if(req.body.name) report.name 		= req.body.name;
 			if(req.body.pruefer) report.pruefer = req.body.pruefer;
+			if(req.body.datum) report.datum 	= req.body.datum;
+			if(req.body.adresse) report.adresse = req.body.adresse;
 			if(req.body.text) report.text 		= req.body.text;
 
 			// save the record and check for errors
@@ -123,7 +127,12 @@ app.route('/reports/:report_id')
 
 // basic route for the homepage
 app.get('/', function(req, res) {
-	res.send('Welcome to the IBS API!');
+	res.sendFile(__dirname + '/public/index.html');
+});
+
+// get Angular app.js file
+app.get('/js/app.js', function(req, res) {
+	res.sendFile(__dirname + '/public/js/app.js');
 });
 
 
