@@ -3,11 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>First Angular App!</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 		<script src="js/app.js"></script> 
 	</head>
 	<body ng-app="myApp" ng-controller="mainController">
-
 		<form novalidate class="simple-form">
 			Name: <input type="text" ng-model="report.name" /><br />
 			Prüfer: <input type="text" ng-model="report.pruefer" /><br />
@@ -16,6 +16,27 @@
 			Text: <input type="text" ng-model="report.text" /><br />
 			<input type="submit" ng-click="save()" value="Save" />
 		</form>
-		<pre>{{ message }}</pre>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Name</td>
+					<td>Prüfer</td>
+					<td>Datum</td>
+					<td>Adresse</td>
+					<td>Text</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="report in reports">
+					<td>{{ report._id }}</td>
+					<td>{{ report.name }}</td>
+					<td>{{ report.pruefer }}</td>
+					<td>{{ report.datum | date }}</td>
+					<td>{{ report.adresse }}</td>
+					<td>{{ report.text }}</td>
+				</tr>
+			</tbody>		
+		</table>
 	</body>
 </html>

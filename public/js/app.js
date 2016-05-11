@@ -1,12 +1,20 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('mainController', function($scope, $http) {
-	$scope.message = 'Hello Angular!';
+
+	$http.get("http://localhost:8080/reports")
+   		.then(function(response) {
+      		$scope.reports = response.data;
+    });
 
 	$scope.save = function() {
         var data = $scope.report;
         $http.post('http://localhost:8080/reports' , data).success(function(data, status) {
-            $scope.message = 'saved';
+        	$http.get("http://localhost:8080/reports")
+   			.then(function(response) {
+      			$scope.reports = response.data;
+    		});
     	})
-    }   
+    }
+
 });
