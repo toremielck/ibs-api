@@ -4,8 +4,10 @@
 		<meta charset="utf-8">
 		<title>First Angular App!</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-		<script src="js/app.js"></script> 
+		<script src="js/app.js"></script>
 	</head>
 	<body ng-app="myApp" ng-controller="mainController">
 		<form novalidate class="simple-form">
@@ -16,27 +18,17 @@
 			Text: <input type="text" ng-model="report.text" /><br />
 			<input type="submit" ng-click="save()" value="Save" />
 		</form>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<td>ID</td>
-					<td>Name</td>
-					<td>Prüfer</td>
-					<td>Datum</td>
-					<td>Adresse</td>
-					<td>Text</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="report in reports">
-					<td>{{ report._id }}</td>
-					<td>{{ report.name }}</td>
-					<td>{{ report.pruefer }}</td>
-					<td>{{ report.datum | date }}</td>
-					<td>{{ report.adresse }}</td>
-					<td>{{ report.text }}</td>
-				</tr>
-			</tbody>		
-		</table>
+		<div class="panel-group" id="accordion">
+			<div class="panel panel-default" ng-repeat="report in reports">
+				<div class="panel-heading">
+					<h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ report._id }}">Collapsible Group {{ report._id }}</a></h4>
+				</div>
+				<div id="collapse{{ report._id }}" class="panel-collapse collapse">
+					<div class="panel-body">
+						{{ report.text }}
+					</div>
+				</div>
+			</div>
+		</div> 
 	</body>
 </html>
