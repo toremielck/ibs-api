@@ -1,3 +1,3 @@
 # ibs-api
-API for the FlatCheck tool.
+IBS FlatCheck Tool
 
