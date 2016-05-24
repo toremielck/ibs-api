@@ -9,7 +9,7 @@ var ReportSchema = new Schema({
 	datum: 					{ type: Date, default: Date.now },
 	adresse: 				String,
 	hausmeister: 			String,
-	hauseingangsbereich: 	[hauseingangsbereich]
+	hauseingangsbereich: 	[HauseingangsbereichSchema]
 }); 
 
 // export schema

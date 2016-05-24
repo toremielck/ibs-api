@@ -4,12 +4,9 @@ var Schema		 = mongoose.Schema;
 
 // report schema
 var HauseingangsbereichSchema = new Schema({
-	name: 					String,
-	pruefer: 				String,
-	datum: 					{ type: Date, default: Date.now },
-	adresse: 				String,
-	hausmeister: 			String,
-	hauseingangsbereich: 	[HauseingangsbereichSchema]
+	briefkastenanlage: 		[IbsListObjectSchema],
+	haustuer: 				[IbsListObjectSchema],
+	eingangsbeleuchtung: 	[IbsListObjectSchema]
 }); 
 
 // export schema
