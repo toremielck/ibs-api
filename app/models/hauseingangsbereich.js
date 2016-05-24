@@ -1,16 +1,16 @@
-// packages needed for the reports module
+// packages needed for the hauseingangsbereich module
 var mongoose	 = require('mongoose');
 var Schema		 = mongoose.Schema;
 
 // report schema
-var ReportSchema = new Schema({
+var HauseingangsbereichSchema = new Schema({
 	name: 					String,
 	pruefer: 				String,
 	datum: 					{ type: Date, default: Date.now },
 	adresse: 				String,
 	hausmeister: 			String,
-	hauseingangsbereich: 	[hauseingangsbereich]
+	hauseingangsbereich: 	[HauseingangsbereichSchema]
 }); 
 
 // export schema
-module.exports = mongoose.model('Report', ReportSchema);
+module.exports = mongoose.model('Hauseingangsbereich', HauseingangsbereichSchema);
