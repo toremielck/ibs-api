@@ -1,12 +1,10 @@
-// packages needed for the hauseingangsbereich module
+// packages needed for the reports module
 var mongoose	 = require('mongoose');
 var Schema		 = mongoose.Schema;
 
 // report schema
 var HauseingangsbereichSchema = new Schema({
-	briefkastenanlage: 		[IbsListObjectSchema],
-	haustuer: 				[IbsListObjectSchema],
-	eingangsbeleuchtung: 	[IbsListObjectSchema]
+	foto: 	String
 }); 
 
 // export schema
