@@ -1,7 +1,7 @@
 // packages needed for the reports module
-var mongoose	 = require('mongoose');
-var Schema		 = mongoose.Schema;
-var HauseingangsbereichModel = require('./hauseingangsbereich');
+var mongoose	 		 		= require('mongoose');
+var Schema		 		    	= mongoose.Schema;
+var HauseingangsbereichModel 	= require('./hauseingangsbereich');
 
 // report schema
 var ReportSchema = new Schema({

@@ -1,14 +1,10 @@
-// packages needed for the IbsListObject module
+// packages needed for the reports module
 var mongoose	 = require('mongoose');
 var Schema		 = mongoose.Schema;
 
 // report schema
 var IbsListObjectSchema = new Schema({
-	pos: 		Boolean,
-	mn: 		Boolean,
-	foto: 		String,
-	em: 		String,
-	erledigt: 	Boolean
+	pos: 		Boolean
 }); 
 
 // export schema
